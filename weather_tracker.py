@@ -25,8 +25,6 @@ layout.addWidget(text)
 
 window.setLayout(layout)
 
-# get_weather("Fremont", "6f22d45461ea6663513d9f479a0317af")
-
 window.show()
 
 app.exec() 
