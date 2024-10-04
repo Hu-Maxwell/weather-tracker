@@ -33,10 +33,18 @@ def get_weather(city_name, api_key):
 
 def handle_button_press(input_box, label): 
     api_key = os.getenv('WEATHER_API_KEY')
+    if not api_key: 
+        label.setText("API key is missing.")
+        return 
+    
     city_name = on_button_press(input_box)
-    weather_data = get_weather(city_name, api_key)
+    if not city_name:
+        label.setText("Enter a city name.")
+        return
 
-    if weather_data:
-        label.setText(weather_data)
-    else: 
+    weather_data = get_weather(city_name, api_key)
+    if not weather_data: 
         label.setText("Invalid city!")
+        return
+
+    label.setText(weather_data)

@@ -1,7 +1,7 @@
 import sys
 from PyQt5.QtWidgets import QApplication, QPushButton, QLineEdit, QLabel, QVBoxLayout, QWidget
 
-from widget_def import handle_button_press
+from weather_utils import handle_button_press
 
 app = QApplication(sys.argv)
 
