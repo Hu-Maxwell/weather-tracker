@@ -15,7 +15,8 @@ input_box.setPlaceholderText("City:")
 button = QPushButton("Find the weather")
 button.clicked.connect(lambda: on_button_press(input_box))
 
-text = QLabel("placeholder text")
+weather_text = get_weather("Fremont", "API_KEY")
+text = QLabel(f"{weather_text}")
 
 layout = QVBoxLayout()
 layout.addWidget(input_box)
@@ -24,6 +25,7 @@ layout.addWidget(text)
 
 window.setLayout(layout)
 
+# get_weather("Fremont", "6f22d45461ea6663513d9f479a0317af")
 
 window.show()
 
