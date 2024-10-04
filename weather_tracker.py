@@ -1,7 +1,7 @@
 import sys
-from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QLineEdit, QLabel, QVBoxLayout, QWidget
+from PyQt5.QtWidgets import QApplication, QPushButton, QLineEdit, QLabel, QVBoxLayout, QWidget
 
-
+from widget_def import on_button_press, get_weather
 
 app = QApplication(sys.argv)
 
@@ -9,16 +9,21 @@ window = QWidget()
 
 window.setWindowTitle("Weather Tracker")
 
+input_box = QLineEdit("")
+input_box.setPlaceholderText("City:")
+
 button = QPushButton("Find the weather")
-input_box = QLineEdit("City: ")
+button.clicked.connect(lambda: on_button_press(input_box))
+
 text = QLabel("placeholder text")
 
 layout = QVBoxLayout()
-layout.addWidget(button)
 layout.addWidget(input_box)
+layout.addWidget(button)
 layout.addWidget(text)
 
 window.setLayout(layout)
+
 
 window.show()
 
