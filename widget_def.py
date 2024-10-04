@@ -1,4 +1,5 @@
 import requests
+import os
 
 def on_button_press(input_box): 
     city_name = input_box.text()
@@ -25,11 +26,17 @@ def get_weather(city_name, api_key):
 
         return temp + humidity + wind + weather_description
     else: 
-        return 
+        if response.status_code == 404: 
+            return "City not found."
+        else: 
+            return "An error occured."
 
 def handle_button_press(input_box, label): 
-    api_key = "key"
+    api_key = os.getenv('WEATHER_API_KEY')
     city_name = on_button_press(input_box)
     weather_data = get_weather(city_name, api_key)
 
-    label.setText(weather_data)
+    if weather_data:
+        label.setText(weather_data)
+    else: 
+        label.setText("Invalid city!")
