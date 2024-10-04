@@ -19,10 +19,10 @@ def get_weather(city_name, api_key):
         data = response.json()
         main = data['main']
 
-        temp = "Temp: " + str(main['temp']) + "\n"
-        wind = "Wind speed: " + str(data['wind']['speed']) + "\n"
-        humidity = "Humidity: " + str(main['humidity']) + "\n"
-        weather_description = "Weather description: " + str(data['weather'][0]['main']) + "\n"
+        temp = f"Temperature: {main['temp']}°C\n"
+        wind = f"Wind speed: {data['wind']['speed']}m/s\n"
+        humidity = f"Humidity: {main['humidity']}% \n"
+        weather_description = f"Weather description: {data['weather'][0]['main']} \n"
 
         return temp + humidity + wind + weather_description
     else: 
