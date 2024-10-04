@@ -1,7 +1,7 @@
 import sys
 from PyQt5.QtWidgets import QApplication, QPushButton, QLineEdit, QLabel, QVBoxLayout, QWidget
 
-from widget_def import on_button_press, get_weather
+from widget_def import handle_button_press
 
 app = QApplication(sys.argv)
 
@@ -13,26 +13,19 @@ input_box = QLineEdit("")
 input_box.setPlaceholderText("City:")
 
 button = QPushButton("Find the weather")
-button.clicked.connect(lambda: on_button_press(input_box))
 
-weather_text = get_weather("Fremont", "API_KEY")
-text = QLabel(f"{weather_text}")
+text = QLabel("Weather data will appear here.")
 
 layout = QVBoxLayout()
 layout.addWidget(input_box)
 layout.addWidget(button)
 layout.addWidget(text)
 
+button.clicked.connect(lambda: handle_button_press(input_box, text))
+
+
 window.setLayout(layout)
 
 window.show()
 
 app.exec() 
-
-
-# window: 
-# input field for the city 
-# button to search
-# labels / textboxes / to display weather data
-
-# api call 
