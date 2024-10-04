@@ -7,14 +7,16 @@ class MainWindow(QMainWindow): # QMainWindow is the superclass
         super().__init__() # refers to the superclass and calls it's initializer (constructor)
         self.setWindowTitle("My App")
 
-        button = QPushButton("Press me!")
-        button.setCheckable(True)
-        button.clicked.connect(self.on_click)
+        self.button = QPushButton("Press me!")
+        self.button.clicked.connect(self.on_click)
 
-        self.setCentralWidget(button)
+        self.setCentralWidget(self.button)
 
-    def on_click(self, checked): 
-        print(f"Clicked! Checked: {checked}") 
+    def on_click(self): 
+        self.button.setText("You already clicked me.")
+        self.button.setEnabled(False) 
+        self.setWindowTitle("My Oneshot App")
+
 
 app = QApplication(sys.argv)
 
@@ -46,6 +48,12 @@ app.exec()
 #   the signal calls the above code 
 
 # button
-#   has two features so far: 
-#   1. whenever it's clicked, it emits a signal
-#   2. the signal carries a boolean value
+#   whenever it's clicked, it emits emits a signal
+#   when it is set to "checkable", the signal has a bool value
+#   returns true when pressed, and false when released
+#   
+#   .setEnabled()
+#   takes for input a bool val, and allows / disallows button from being clickable
+
+# by writing self.button, you are making yourself capable of storing data from the button press, 
+# because the button becomes part of the class as well, instead of just part of the window
