@@ -8,22 +8,20 @@ class MainWindow(QMainWindow): # QMainWindow is the superclass
         self.setWindowTitle("My App")
 
         button = QPushButton("Press me!")
+        button.setCheckable(True)
         button.clicked.connect(self.on_click)
 
-        self.setFixedSize(QSize(400, 300))
-
         self.setCentralWidget(button)
-    
-    def on_click(self): 
-        print("Clicked!")
+
+    def on_click(self, checked): 
+        print(f"Clicked! Checked: {checked}") 
 
 app = QApplication(sys.argv)
 
-window = MainWindow()
-window.show()  
+window = MainWindow() 
+window.show()
 
 app.exec() 
-
 
 
 # app is now a QApplication object. a QApplication object handles:
@@ -41,8 +39,13 @@ app.exec()
 # QMainWindow
 
 # sending and recieving signals: 
-# signals can recieve data 
-#   .clicked EMITS a SIGNAL
-#   when clicked, it returns a signal (basically calling a function)
+# signals can emit data 
+#   .clicked emits a signal
+#   when clicked, it emits a signal (basically calling a function)
 #   .connect(self.on_click) 
 #   the signal calls the above code 
+
+# button
+#   has two features so far: 
+#   1. whenever it's clicked, it emits a signal
+#   2. the signal carries a boolean value
